@@ -1,12 +1,21 @@
 "use client";
 import { useEffect, useState } from "react";
-import { Button, TextArea } from "ui";
+import { Box } from "ui/box";
+import { Button } from "ui/split/button";
+import { TextArea } from "ui/split/textarea";
 
 import styles from "./style.module.css";
 
-import "ui/split/variables.css";
 import "ui/split/button.css";
 import "ui/split/textarea.css";
+import "ui/split/variables.css";
+import { setThemeConfig } from "ui/system";
+import { sprinkles, theme } from "./test.css";
+
+setThemeConfig({
+  theme,
+  sprinkles,
+});
 
 const Page = () => {
   const [theme, setTheme] = useState<"dark" | "light">("light");
@@ -23,15 +32,17 @@ const Page = () => {
 
   return (
     <div className={styles.root}>
-      <Button
-        onClick={() =>
-          setTheme((theme) => (theme === "light" ? "dark" : "light"))
-        }
-      >
-        {theme}
-      </Button>
-      <TextArea />
-      <Button>button</Button>
+      <Box bgColor="bg.error.default">
+        <Button
+          onClick={() =>
+            setTheme((theme) => (theme === "light" ? "dark" : "light"))
+          }
+        >
+          {theme}
+        </Button>
+        <TextArea />
+        <Button>button</Button>
+      </Box>
     </div>
   );
 };
